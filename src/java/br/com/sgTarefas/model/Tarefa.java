@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.sgTarefas.model;
 
 import java.io.Serializable;
@@ -40,6 +35,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Tarefa implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    public static enum Prioridade {
+        ALTA, MEDIA, BAIXA;
+    }
+	public static enum Situacao {
+        EM_ANDAMENTO, CONCLUIDA;
+    }
+    
     @Id
     @Basic(optional = false)
     @NotNull
@@ -51,12 +54,15 @@ public class Tarefa implements Serializable {
     @Size(max = 255)
     @Column(name = "descricao")
     private String descricao;
-    @Size(max = 255)
-    @Column(name = "prioridade")
-    private String prioridade;
-    @Size(max = 255)
-    @Column(name = "status")
-    private String status;
+    
+    @Enumerated(EnumType.STRING)
+	@Column(name = "prioridade")
+	private Prioridade prioridade;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private Situacao situacao = Situacao.EM_ANDAMENTO;
+    
     @Size(max = 255)
     @Column(name = "titulo")
     private String titulo;
@@ -94,22 +100,22 @@ public class Tarefa implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public Prioridade getPrioridade() {
+		return prioridade;
+	}
 
-    public String getPrioridade() {
-        return prioridade;
-    }
+	public void setPrioridade(Prioridade prioridade) {
+		this.prioridade = prioridade;
+	}
 
-    public void setPrioridade(String prioridade) {
-        this.prioridade = prioridade;
-    }
+	public Situacao getSituacao() {
+		return situacao;
+	}
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
+	}
 
     public String getTitulo() {
         return titulo;
