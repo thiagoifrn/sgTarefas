@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML>
+<html lang="pt" 
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" name="viewport"
+              content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <title>Novo Responsável</title>
+        <style type="text/css">
+            .btnWidth {
+                width: 80px;
+            }     
+            .col-sm-updated {           
+                padding-top: 7px;           
+            }
+            .col-sm-updated a {
+                margin-left: 30px;
+                text-decoration: none !important;
+            }
+            .col-sm-27 {
+                width: 27% !important   ;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <center><h2><h:outputText value="Novo Responsável"/></h2></center>
+        <h:form id="responsavelBeanForm" styleClass="form-horizontal">        
+            <p:panel header="Cadastro de Responsável">
+                <h1>Cadastre um Responsável</h1>
+                <h:panelGrid id="grid" columns="3" cellpadding="7">
+
+                    <p:outputLabel value="Nome" for="nome" />
+                    <p:inputText id="nome" value="#{responsavelMb.responsavel.nome}"
+                                 required="true" requiredMessage="Nome é necessário"
+                                 placeholder="Insira o nome" />
+                    <p:message for="nome" />
+                    <p:commandButton  value="Cadastrar" action="#{responsavelMb.addNewResponsavel()}"
+                                     update="responsavelBeanForm" style="margin-top:10px" />
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

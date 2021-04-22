@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />     
+        <title>Lista de Responsaveis</title>
+        <style type="text/css">
+            .tableUpdated {
+                width: 90% !important;
+                margin: 17px 58px 0 !important;
+            }
+            .btnSpace {
+                margin: 17px;
+            }     
+        </style>
+    </h:head>
+    <h:body>
+        <center><h2><h:outputText value="Responsaveis"/></h2></center>
+        <h:form id="responsavelForm">
+
+            <p:dataTable binding="#{table}" value="#{responsavelMb.responsavelListFromDb()}" var="r" id="tabela"
+                         paginator="true" rows="5" styleClass="table table-striped table-bordered tableUpdated">
+                <p:column headerText="Número">
+                    <p:outputLabel value="#{r.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <p:outputLabel value="#{r.nome}" />
+                </p:column>
+
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{responsavelMb.editResponsavelDetailsById()}" update="@form" styleClass="btn btn-primary">
+                          <f:param name="selectedResponsavelId" value="#{r.id}" />
+                    </p:commandButton>
+                    <p:commandButton value="Deletar"  update="tabela" action="#{responsavelMb.deleteResponsavelById(r.id)}" styleClass="btn btn-danger">
+
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <center><p:commandButton action="index.xhtml?faces-redirect=true" value="Adicionar novo" styleClass="btn btn-success btnSpace" /></center>
+        </h:form>
+    </h:body>
+</html>

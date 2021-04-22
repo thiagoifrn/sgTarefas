@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:g="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <title>Editar Responsavel</title>
+        <style type="text/css">
+            .updateBtnStyle {
+                width: 80px !important;         
+            }
+            .col-sm-updated {          
+                padding-top: 7px;           
+            }
+            .col-sm-updated a {
+                text-decoration: none !important;
+            }
+            .text-edit {
+                margin-left: 123px !important;
+                margin-top: 29px !important;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <center><h2><h:outputText value="Edit School Record"/></h2></center>
+        <h:form id="editResponsavelForm" styleClass="form-horizontal">                        
+            <div class="form-group">
+                
+                <div class="col-sm-4"><p:inputText type="hidden" id="responsavelId" value="#{responsavelMb.responsavel.id}" styleClass="form-control" /></div>
+            </div>
+            <div class="form-group">
+                <p:outputLabel id="nomeLabel" styleClass="control-label col-sm-2">Nome:</p:outputLabel>
+                <div class="col-sm-4"><p:inputText id="name" value="#{responsavelMb.responsavel.nome}" styleClass="form-control" /></div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2" />
+                <div class="col-sm-4">
+                    <h:commandButton value="Atualizar" action="#{responsavelMb.updateResponsavelDetails(responsavelMb.idEditarResponsavel)}" styleClass="btn btn-primary updateBtnStyle" />
+                </div>
+                <div class="col-sm-1" />
+                 <center><p:commandButton action="listResponsavel.xhtml?faces-redirect=true" value="Listar Responsaveis" styleClass="btn btn-success btnSpace" /></center>
+            </div>
+            <div class="text text-success text-edit"><p:message for="responsavelId" /></div>
+        </h:form>
+    </h:body>
+</html>
